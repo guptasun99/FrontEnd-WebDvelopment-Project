@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Primary SEO -->
+  <title>Finance Calculator Pro – Free Loan, EMI, Compound Interest & Investment Calculators</title>
+  <meta name="description" content="Free finance calculators for compound interest, loan EMI, mortgage, CAGR, investments, and retirement planning. Instant results with interactive charts. No signup required.">
+  <link rel="canonical" href="https://financecalculatorpro.com/">
+
+  <!-- Robots -->
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://financecalculatorpro.com/">
+  <meta property="og:title" content="Finance Calculator Pro – Free Financial Calculators">
+  <meta property="og:description" content="Calculate compound interest, loan EMI, mortgage payments, investments & retirement savings. Free and easy-to-use financial calculators.">
+  <meta property="og:image" content="https://financecalculatorpro.com/og-image.png">
+  <meta property="og:site_name" content="Finance Calculator Pro">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Finance Calculator Pro – Free Financial Calculators">
+  <meta name="twitter:description" content="Free calculators for loans, EMI, compound interest, investments & retirement planning.">
+  <meta name="twitter:image" content="https://financecalculatorpro.com/og-image.png">
+
+  <!-- Theme -->
+  <meta name="theme-color" content="#667eea">
+
+  <!-- Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" defer></script>
+
+  <!-- Schema: Organization + WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Finance Calculator Pro",
+    "url": "https://financecalculatorpro.com/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "description": "Free online finance calculators for compound interest, loans, EMI, mortgage, investments, and retirement planning.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Finance Calculator Pro",
+      "url": "https://financecalculatorpro.com/"
+    }
+  }
+  </script>
+</head>
+<body>
+    <div class="container ad-safe-wrapper" itemscope itemtype="https://schema.org/WebApplication">
+        <header>
+            <nav class="header-nav">
+                <a href="/games.html" class="nav-link games-link">🎮 Finance Games</a>
+                <button id="themeToggle" aria-label="Toggle dark/light mode">🌙 Dark Mode</button>
+            </nav>
+            <div class="logo">
+                <div class="logo-icon" aria-hidden="true">💰</div>
+                <div>
+                    <h1 itemprop="name">Finance Calculator Pro</h1>
+                    <p class="subtitle" itemprop="description">Free online financial calculators for compound interest, loans, mortgages, investments & retirement planning with interactive charts</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats Bar -->
+        <section class="stats-bar" aria-label="Calculator Features">
+            <div class="stat-item">
+                <div class="stat-value">10+</div>
+                <div class="stat-label">Free Calculators</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Free Forever</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" aria-hidden="true">📊</div>
+                <div class="stat-label">Interactive Charts</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" aria-hidden="true">⚡</div>
+                <div class="stat-label">Instant Results</div>
+            </div>
+        </div>
+
+        <div class="calc-selector">
+            <button class="calc-btn active" onclick="switchCalc('compound')">
+                <span class="icon">📈</span>
+                Compound Interest
+            </button>
+            <button class="calc-btn" onclick="switchCalc('simple')">
+                <span class="icon">💵</span>
+                Simple Interest
+            </button>
+            <button class="calc-btn" onclick="switchCalc('cagr')">
+                <span class="icon">📊</span>
+                CAGR
+            </button>
+            <button class="calc-btn" onclick="switchCalc('loan')">
+                <span class="icon">🏦</span>
+                Loan Calculator
+            </button>
+            <button class="calc-btn" onclick="switchCalc('mortgage')">
+                <span class="icon">🏠</span>
+                Mortgage
+            </button>
+            <button class="calc-btn" onclick="switchCalc('investment')">
+                <span class="icon">💼</span>
+                Investment
+            </button>
+            <button class="calc-btn" onclick="switchCalc('retirement')">
+                <span class="icon">🎯</span>
+                Retirement
+            </button>
+            <button class="calc-btn" onclick="switchCalc('savings')">
+                <span class="icon">💰</span>
+                Savings Goal
+            </button>
+            <button class="calc-btn" onclick="switchCalc('roi')">
+                <span class="icon">📉</span>
+                ROI
+            </button>
+            <button class="calc-btn" onclick="switchCalc('math')">
+                <span class="icon">🔢</span>
+                Math Calculator
+            </button>
+        </div>
+
+        <div class="calculator-container">
+            <!-- Compound Interest Calculator -->
+            <div id="compound" class="calculator active">
+                <h2>📈 Compound Interest Calculator</h2>
+                <p class="calculator-description">Calculate how your money can grow over time with compound interest. Factor in monthly contributions and different compounding frequencies.</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ciPrincipal">Principal Amount ($)</label>
+                        <input type="number" id="ciPrincipal" value="10000" placeholder="Initial investment">
+                    </div>
+                    <div class="form-group">
+                        <label for="ciRate">Annual Interest Rate (%)</label>
+                        <input type="number" id="ciRate" value="8" step="0.1" placeholder="Expected return">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ciTime">Time Period (years)</label>
+                        <input type="number" id="ciTime" value="10" placeholder="Investment duration">
+                    </div>
+                    <div class="form-group">
+                        <label for="ciCompounding">Compounding Frequency</label>
+                        <select id="ciCompounding">
+                            <option value="1">Annually</option>
+                            <option value="2">Semi-Annually</option>
+                            <option value="4">Quarterly</option>
+                            <option value="12" selected>Monthly</option>
+                            <option value="365">Daily</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ciMonthlyAdd">Monthly Addition ($) <span class="hint">(Optional)</span></label>
+                    <input type="number" id="ciMonthlyAdd" value="500" placeholder="Monthly contribution">
+                </div>
+                <button class="calculate-btn" onclick="calculateCompoundInterest()">📊 Calculate Compound Interest</button>
+                <div id="compoundResults" class="results"></div>
+                <div class="chart-container">
+                    <div class="chart-controls">
+                        <button class="chart-view-btn active" onclick="toggleChartView('compound', 'yearly')">Yearly</button>
+                        <button class="chart-view-btn" onclick="toggleChartView('compound', 'monthly')">Monthly</button>
+                    </div>
+                    <canvas id="compoundChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Simple Interest Calculator -->
+            <div id="simple" class="calculator">
+                <h2>💵 Simple Interest Calculator</h2>
+                <p class="calculator-description">Calculate simple interest where interest is earned only on the principal amount. Perfect for short-term loans and fixed deposits.</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="siPrincipal">Principal Amount ($)</label>
+                        <input type="number" id="siPrincipal" value="10000" placeholder="Initial amount">
+                    </div>
+                    <div class="form-group">
+                        <label for="siRate">Annual Interest Rate (%)</label>
+                        <input type="number" id="siRate" value="6" step="0.1" placeholder="Interest rate">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="siTime">Time Period (years)</label>
+                    <input type="number" id="siTime" value="5" step="0.5" placeholder="Duration">
+                </div>
+                <button class="calculate-btn" onclick="calculateSimpleInterest()">💰 Calculate Simple Interest</button>
+                <div id="simpleResults" class="results"></div>
+                <div class="chart-container">
+                    <div class="chart-controls">
+                        <button class="chart-view-btn active" onclick="toggleChartView('simple', 'yearly')">Yearly</button>
+                        <button class="chart-view-btn" onclick="toggleChartView('simple', 'monthly')">Monthly</button>
+                    </div>
+                    <canvas id="simpleChart"></canvas>
+                </div>
+            </div>
+
+            <!-- CAGR Calculator -->
+            <div id="cagr" class="calculator">
+                <h2>📊 CAGR Calculator</h2>
+                <p class="calculator-description">Calculate Compound Annual Growth Rate - the mean annual growth rate of an investment over a specified time period longer than one year.</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cagrInitial">Beginning Value ($)</label>
+                        <input type="number" id="cagrInitial" value="10000" placeholder="Starting value">
+                    </div>
+                    <div class="form-group">
+                        <label for="cagrFinal">Ending Value ($)</label>
+                        <input type="number" id="cagrFinal" value="25000" placeholder="Final value">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cagrYears">Number of Years</label>
+                    <input type="number" id="cagrYears" value="5" step="0.5" placeholder="Investment period">
+                </div>
+                <button class="calculate-btn" onclick="calculateCAGR()">📈 Calculate CAGR</button>
+                <div id="cagrResults" class="results"></div>
+                <div class="chart-container">
+                    <div class="chart-controls">
+                        <button class="chart-view-btn active" onclick="toggleChartView('cagr', 'yearly')">Yearly</button>
+                        <button class="chart-view-btn" onclick="toggleChartView('cagr', 'monthly')">Monthly</button>
+                    </div>
+                    <canvas id="cagrChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Loan Calculator -->
+            <div id="loan" class="calculator">
+                <h2>🏦 Loan Calculator</h2>
+                <p class="calculator-description">Calculate monthly payments, total interest, and create an amortization schedule for any loan.</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="loanAmount">Loan Amount ($)</label>
+                        <input type="number" id="loanAmount" value="200000">
+                    </div>
+                    <div class="form-group">
+                        <label for="loanRate">Annual Interest Rate (%)</label>
+                        <input type="number" id="loanRate" value="5.5" step="0.1">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="loanTerm">Loan Term (years)</label>
+                    <input type="number" id="loanTerm" value="30">
+                </div>
+                                <button class="calculate-btn" onclick="calculateLoan()">🏦 Calculate Loan</button>
+                <div id="loanResults" class="results"></div>
+                <div class="chart-container">
+                    <div class="chart-controls">
+                        <button class="chart-view-btn active" onclick="toggleChartView('loan', 'yearly')">Yearly</button>
+                        <button class="chart-view-btn" onclick="toggleChartView('loan', 'monthly')">Monthly</button>
+                    </div>
+                    <canvas id="loanChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Mortgage Calculator -->
+            <div id="mortgage" class="calculator">
+                <h2>🏠 Mortgage Calculator</h2>
+                <p class="calculator-description">Get a complete breakdown of your monthly mortgage payment including principal, interest, taxes, and insurance.</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="homePrice">Home Price ($)</label>
+                        <input type="number" id="homePrice" value="350000">
+                    </div>
+                    <div class="form-group">
+                        <label for="downPayment">Down Payment ($)</label>
+                        <input type="number" id="downPayment" value="70000">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="mortgageRate">Interest Rate (%)</label>
+                        <input type="number" id="mortgageRate" value="6.5" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="mortgageTerm">Loan Term (years)</label>
+                        <input type="number" id="mortgageTerm" value="30">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="propertyTax">Annual Property Tax ($)</label>
+                        <input type="number" id="propertyTax" value="4200">
+                    </div>
+                    <div class="form-group">
+                        <label for="homeInsurance">Annual Home Insurance ($)</label>
+                        <input type="number" id="homeInsurance" value="1800">
+                    </div>
+                </div>
+                <button class="calculate-btn" onclick="calculateMortgage()">🏠 Calculate Mortgage</button>
+                <div id="mortgageResults" class="results"></div>
+                <div class="chart-container">
+                    <div class="chart-controls">
+                        <button class="chart-view-btn active" onclick="toggleChartView('mortgage', 'yearly')">Yearly</button>
+                        <button class="chart-view-btn" onclick="toggleChartView('mortgage', 'monthly')">Monthly</button>
+                    </div>
+                    <canvas id="mortgageChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Investment Calculator -->
+            <div id="investment" class="calculator">
+                <h2>💼 Investment Calculator</h2>
+                <p class="calculator-description">Project your investment growth over time with initial investment and regular contributions.</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="initialInvestment">Initial Investment ($)</label>
+                        <input type="number" id="initialInvestment" value="10000">
+                    </div>
+                    <div class="form-group">
+                        <label for="monthlyContribution">Monthly Contribution ($)</label>
+                        <input type="number" id="monthlyContribution" value="500">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="investmentReturn">Expected Annual Return (%)</label>
+                        <input type="number" id="investmentReturn" value="8" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="investmentYears">Investment Period (years)</label>
+                        <input type="number" id="investmentYears" value="20">
+                    </div>
+                </div>
+                <button class="calculate-btn" onclick="calculateInvestment()">💼 Calculate Investment</button>
+                <div id="investmentResults" class="results"></div>
+                <div class="chart-container">
+                    <div class="chart-controls">
+                        <button class="chart-view-btn active" onclick="toggleChartView('investment', 'yearly')">Yearly</button>
+                        <button class="chart-view-btn" onclick="toggleChartView('investment', 'monthly')">Monthly</button>
+                    </div>
+                    <canvas id="investmentChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Retirement Calculator -->
+            <div id="retirement" class="calculator">
+                <h2>🎯 Retirement Calculator</h2>
+                <p class="calculator-description">Plan for a secure retirement by calculating how much you need to save and what your nest egg will grow to.</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="currentAge">Current Age</label>
+                        <input type="number" id="currentAge" value="30">
+                    </div>
+                    <div class="form-group">
+                        <label for="retirementAge">Retirement Age</label>
+                        <input type="number" id="retirementAge" value="65">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="currentSavings">Current Retirement Savings ($)</label>
+                        <input type="number" id="currentSavings" value="50000">
+                    </div>
+                    <div class="form-group">
+                        <label for="monthlyRetirementSaving">Monthly Contribution ($)</label>
+                        <input type="number" id="monthlyRetirementSaving" value="800">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="retirementReturn">Expected Annual Return (%)</label>
+                    <input type="number" id="retirementReturn" value="7" step="0.1">
+                </div>
+                <button class="calculate-btn" onclick="calculateRetirement()">🎯 Calculate Retirement</button>
+                <div id="retirementResults" class="results"></div>
+                <div class="chart-container">
+                    <div class="chart-controls">
+                        <button class="chart-view-btn active" onclick="toggleChartView('retirement', 'yearly')">Yearly</button>
+                        <button class="chart-view-btn" onclick="toggleChartView('retirement', 'monthly')">Monthly</button>
+                    </div>
+                    <canvas id="retirementChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Savings Goal Calculator -->
+            <div id="savings" class="calculator">
+                <h2>🎯 Savings Goal Calculator</h2>
+                <p class="calculator-description">Find out how much you need to save each month to reach your financial goals on time.</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="savingsGoal">Savings Goal ($)</label>
+                        <input type="number" id="savingsGoal" value="50000">
+                    </div>
+                    <div class="form-group">
+                        <label for="currentSavingsAmount">Current Savings ($)</label>
+                        <input type="number" id="currentSavingsAmount" value="5000">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="savingsYears">Time to Goal (years)</label>
+                        <input type="number" id="savingsYears" value="5">
+                    </div>
+                    <div class="form-group">
+                        <label for="savingsRate">Expected Annual Return (%)</label>
+                        <input type="number" id="savingsRate" value="4" step="0.1">
+                    </div>
+                </div>
+                <button class="calculate-btn" onclick="calculateSavings()">🎯 Calculate Savings</button>
+                <div id="savingsResults" class="results"></div>
+                <div class="chart-container">
+                    <div class="chart-controls">
+                        <button class="chart-view-btn active" onclick="toggleChartView('savings', 'yearly')">Yearly</button>
+                        <button class="chart-view-btn" onclick="toggleChartView('savings', 'monthly')">Monthly</button>
+                    </div>
+                    <canvas id="savingsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- ROI Calculator -->
+            <div id="roi" class="calculator">
+                <h2>📉 Return on Investment (ROI) Calculator</h2>
+                <p class="calculator-description">Measure the profitability of your investments by calculating the return on investment percentage and annualized returns.</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="initialCost">Initial Investment Cost ($)</label>
+                        <input type="number" id="initialCost" value="100000">
+                    </div>
+                    <div class="form-group">
+                        <label for="finalValue">Final Investment Value ($)</label>
+                        <input type="number" id="finalValue" value="150000">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="roiYears">Investment Duration (years)</label>
+                    <input type="number" id="roiYears" value="3">
+                </div>
+                <button class="calculate-btn" onclick="calculateROI()">📉 Calculate ROI</button>
+                <div id="roiResults" class="results"></div>
+                <div class="chart-container">
+                    <div class="chart-controls">
+                        <button class="chart-view-btn active" onclick="toggleChartView('roi', 'yearly')">Yearly</button>
+                        <button class="chart-view-btn" onclick="toggleChartView('roi', 'monthly')">Monthly</button>
+                    </div>
+                    <canvas id="roiChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Math Calculator -->
+            <div id="math" class="calculator">
+                <h2>🔢 Math Calculator</h2>
+                <p class="calculator-description">A powerful scientific calculator for quick mathematical calculations. Supports basic arithmetic and advanced functions.</p>
+                <div class="math-display">
+                    <div class="math-expression" id="mathExpression"></div>
+                    <div class="math-result" id="mathResult">0</div>
+                </div>
+                <div class="math-keypad">
+                    <button class="math-key clear" onclick="mathClear()">C</button>
+                    <button class="math-key function" onclick="mathBackspace()">⌫</button>
+                    <button class="math-key function" onclick="mathInput('(')">(</button>
+                    <button class="math-key function" onclick="mathInput(')')">)</button>
+                    
+                    <button class="math-key number" onclick="mathInput('7')">7</button>
+                    <button class="math-key number" onclick="mathInput('8')">8</button>
+                    <button class="math-key number" onclick="mathInput('9')">9</button>
+                    <button class="math-key operator" onclick="mathInput('/')">÷</button>
+                    
+                    <button class="math-key number" onclick="mathInput('4')">4</button>
+                    <button class="math-key number" onclick="mathInput('5')">5</button>
+                    <button class="math-key number" onclick="mathInput('6')">6</button>
+                    <button class="math-key operator" onclick="mathInput('*')">×</button>
+                    
+                    <button class="math-key number" onclick="mathInput('1')">1</button>
+                    <button class="math-key number" onclick="mathInput('2')">2</button>
+                    <button class="math-key number" onclick="mathInput('3')">3</button>
+                    <button class="math-key operator" onclick="mathInput('-')">−</button>
+                    
+                    <button class="math-key number" onclick="mathInput('0')">0</button>
+                    <button class="math-key number" onclick="mathInput('.')">.</button>
+                    <button class="math-key operator" onclick="mathInput('+')">+</button>
+                    <button class="math-key function" onclick="mathInput('%')">%</button>
+                    
+                    <button class="math-key function" onclick="mathSqrt()">√</button>
+                    <button class="math-key function" onclick="mathPower()">x²</button>
+                    <button class="math-key equals" onclick="mathCalculate()">=</button>
+                </div>
+                <div class="form-group math-history-container">
+                    <label for="mathHistory">Calculation History</label>
+                    <div id="mathHistory"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-card">
+                <h3>💡 Quick Tips</h3>
+                <div class="quick-tip">
+                    <p><strong>Compound Interest:</strong> The earlier you start investing, the more time your money has to grow exponentially.</p>
+                </div>
+                <div class="quick-tip">
+                    <p><strong>Rule of 72:</strong> Divide 72 by your interest rate to estimate how many years to double your money.</p>
+                </div>
+                <div class="quick-tip">
+                    <p><strong>Emergency Fund:</strong> Aim to save 3-6 months of expenses before investing.</p>
+                </div>
+            </div>
+
+            <div class="sidebar-card">
+                <h3>📐 Formulas</h3>
+                <div class="formula-box">
+                    <h4>Compound Interest</h4>
+                    <code>A = P(1 + r/n)^(nt)</code>
+                </div>
+                <div class="formula-box">
+                    <h4>Simple Interest</h4>
+                    <code>I = P × r × t</code>
+                </div>
+                <div class="formula-box">
+                    <h4>CAGR</h4>
+                    <code>CAGR = (FV/PV)^(1/n) - 1</code>
+                </div>
+            </div>
+
+            <div class="sidebar-card ad-space">
+                <!-- Ad Space - Content Safe Zone -->
+                <span>📊 Your Ad Here</span>
+            </div>
+        </div>
+        </div>
+
+        <div class="info-section">
+            <h2>📚 Financial Knowledge Center</h2>
+            
+            <div class="knowledge-tabs">
+                <button class="knowledge-tab active" onclick="switchKnowledge('basics')">Finance Basics</button>
+                <button class="knowledge-tab" onclick="switchKnowledge('investing')">Investing 101</button>
+                <button class="knowledge-tab" onclick="switchKnowledge('terms')">Key Terms</button>
+                <button class="knowledge-tab" onclick="switchKnowledge('tips')">Money Tips</button>
+            </div>
+
+            <div id="basics" class="knowledge-content active">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>📈 Compound Interest - The 8th Wonder</h3>
+                        <p>Albert Einstein allegedly called compound interest "the eighth wonder of the world." It's the interest calculated on both the initial principal and the accumulated interest from previous periods. Starting early allows your investments to grow exponentially over time.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>💵 Simple vs Compound Interest</h3>
+                        <p>Simple interest is calculated only on the principal amount, making it straightforward but less profitable. Compound interest earns interest on interest, making it more powerful for long-term wealth building.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>📊 Understanding CAGR</h3>
+                        <p>CAGR (Compound Annual Growth Rate) is the mean annual growth rate of an investment over a specified period. It's useful for comparing the growth rates of different investments or portfolios.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>🎯 The Power of Starting Early</h3>
+                        <p>A 25-year-old investing $200/month at 7% return will have ~$525,000 by age 65. A 35-year-old doing the same will have only ~$244,000. Starting 10 years earlier more than doubles your wealth!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="investing" class="knowledge-content">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>📊 Diversification</h3>
+                        <p>Don't put all your eggs in one basket. Spread investments across different asset classes (stocks, bonds, real estate) to reduce risk. A well-diversified portfolio can weather market volatility better.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>💼 Index Funds vs Active Funds</h3>
+                        <p>Index funds track market indices with low fees and often outperform actively managed funds over time. Warren Buffett recommends S&P 500 index funds for most investors.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>🏦 Emergency Fund First</h3>
+                        <p>Before investing, build an emergency fund covering 3-6 months of expenses. This prevents you from selling investments at a loss during emergencies.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>📈 Dollar-Cost Averaging</h3>
+                        <p>Invest a fixed amount regularly regardless of market conditions. This strategy reduces the impact of volatility and removes emotion from investing decisions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="terms" class="knowledge-content">
+                <div class="term-list">
+                    <div class="term-item">
+                        <h4>APR (Annual Percentage Rate)</h4>
+                        <p>The annual rate charged for borrowing, expressed as a percentage that represents the actual yearly cost over the term of a loan.</p>
+                    </div>
+                    <div class="term-item">
+                        <h4>APY (Annual Percentage Yield)</h4>
+                        <p>The real rate of return earned on an investment, taking into account the effect of compounding interest.</p>
+                    </div>
+                    <div class="term-item">
+                        <h4>Principal</h4>
+                        <p>The original amount of money borrowed or invested, before any interest or returns are added.</p>
+                    </div>
+                    <div class="term-item">
+                        <h4>Amortization</h4>
+                        <p>The process of paying off debt with regular payments over time, where each payment covers interest and reduces principal.</p>
+                    </div>
+                    <div class="term-item">
+                        <h4>ROI (Return on Investment)</h4>
+                        <p>A measure of the profitability of an investment, calculated as (Gain - Cost) / Cost × 100.</p>
+                    </div>
+                    <div class="term-item">
+                        <h4>Equity</h4>
+                        <p>The value of ownership in an asset after subtracting liabilities. In real estate, it's home value minus mortgage balance.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tips" class="knowledge-content">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>💰 50/30/20 Rule</h3>
+                        <p>Allocate your after-tax income: 50% for needs (rent, utilities), 30% for wants (entertainment, dining), and 20% for savings and debt repayment.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>🎯 Pay Yourself First</h3>
+                        <p>Automate your savings by setting up automatic transfers to savings/investment accounts right after payday. Treat savings as a non-negotiable expense.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>💳 High-Interest Debt First</h3>
+                        <p>Pay off high-interest debt (credit cards) before low-interest debt (student loans). Consider the debt avalanche method for maximum savings.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>🏠 House Affordability</h3>
+                        <p>The 28/36 rule suggests spending no more than 28% of gross income on housing and no more than 36% on total debt payments.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2>Why Choose Finance Calculator Pro?</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🎯 Accurate Calculations</h3>
+                    <p>Our calculators use industry-standard formulas trusted by financial professionals to provide precise results for all your financial planning needs.</p>
+                </div>
+                <div class="info-card">
+                    <h3>📊 Interactive Visualizations</h3>
+                    <p>See your financial projections through beautiful, interactive charts that make complex data easy to understand at a glance.</p>
+                </div>
+                <div class="info-card">
+                    <h3>🔒 Privacy First</h3>
+                    <p>All calculations happen in your browser. We never store your financial data. Your information stays completely private and secure.</p>
+                </div>
+                <div class="info-card">
+                    <h3>📱 Works Everywhere</h3>
+                    <p>Fully responsive design works perfectly on mobile phones, tablets, laptops, and desktop computers. Calculate on the go!</p>
+                </div>
+                <div class="info-card">
+                    <h3>💯 100% Free</h3>
+                    <p>All our calculators are completely free to use with no hidden fees, no registration required, and no limits on usage.</p>
+                </div>
+                <div class="info-card">
+                    <h3>📚 Educational Resources</h3>
+                    <p>Learn financial concepts while you calculate. Each tool includes helpful tips and explanations to boost your financial literacy.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO Content Section -->
+        <section class="seo-content" aria-label="About Finance Calculators">
+            <h2>Free Online Finance Calculators</h2>
+            <p>Finance Calculator Pro offers the most comprehensive suite of <strong>free online financial calculators</strong> for all your money management needs. Whether you're calculating <strong>compound interest</strong>, planning your <strong>retirement savings</strong>, or figuring out your <strong>mortgage payments</strong>, our tools provide instant, accurate results with beautiful interactive charts.</p>
+            
+            <h3>Popular Financial Calculators</h3>
+            <ul class="seo-list">
+                <li><strong>Compound Interest Calculator</strong> - Calculate how your investments grow over time with the power of compounding. See monthly and yearly projections.</li>
+                <li><strong>CAGR Calculator</strong> - Compute Compound Annual Growth Rate to measure investment performance over multiple years.</li>
+                <li><strong>Loan EMI Calculator</strong> - Calculate monthly loan payments for personal loans, car loans, education loans, and business loans.</li>
+                <li><strong>Mortgage Calculator</strong> - Estimate your monthly home loan payments including principal, interest, taxes, and insurance.</li>
+                <li><strong>Investment Calculator</strong> - Project your investment growth with regular contributions and expected returns.</li>
+                <li><strong>Retirement Calculator</strong> - Plan your retirement savings and see how much you need to save each month.</li>
+                <li><strong>Savings Goal Calculator</strong> - Calculate how much to save monthly to reach your financial goals.</li>
+                <li><strong>ROI Calculator</strong> - Measure your return on investment percentage and annualized returns.</li>
+                <li><strong>Simple Interest Calculator</strong> - Calculate basic interest on principal amount for fixed deposits and short-term loans.</li>
+            </ul>
+            
+            <h3>Why Choose Finance Calculator Pro?</h3>
+            <p>Our <strong>free financial calculators</strong> are trusted by millions of users worldwide. All calculations happen instantly in your browser - we never store your financial data. Our tools work on all devices: desktop computers, laptops, tablets, and mobile phones. No registration, no signup, no hidden fees - just accurate financial calculations when you need them.</p>
+        </section>
+
+        <footer>
+            <p><strong>Finance Calculator Pro</strong> - Your trusted partner in financial planning</p>
+            <p>&copy; 2025 Finance Calculator Pro. All rights reserved.</p>
+            <nav class="footer-keywords" aria-label="Calculator Categories">
+                <span>Compound Interest Calculator</span> |
+                <span>CAGR Calculator</span> |
+                <span>Loan EMI Calculator</span> |
+                <span>Mortgage Calculator</span> |
+                <span>Investment Calculator</span> |
+                <span>Retirement Calculator</span> |
+                <span>Savings Calculator</span> |
+                <span>ROI Calculator</span> |
+                <span>Simple Interest Calculator</span> |
+                <span>Financial Planning Tools</span>
+            </nav>
+            <p class="footer-seo">Free online finance calculator for compound interest, CAGR, loan EMI, mortgage payment, investment returns, retirement planning, savings goals, ROI calculation. Best financial calculator. Calculate interest rates, monthly payments, amortization schedules, investment growth, retirement savings, and more.</p>
+        </footer>
+    </div>
+    <script src="script.js" defer></script>
+</body>
+</html>
+
+
+
+
+
